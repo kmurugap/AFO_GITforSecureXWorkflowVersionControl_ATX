@@ -1,0 +1,150 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01XCWUN5K00LR4SZPzhOBl8vRbtqyceIKhC",
+    "name": "FMC-GET-DEVICE-DETAILS",
+    "title": "FMC-GET-DEVICE-DETAILS",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": null,
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "FMC-GET-DEVICE-DETAILS",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01XCKNM65TB0X1A6SrSLcrbxLGwoWzmfFPC",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01XCXWR9UWJUU0Oenbihp5bvy1K0JEPuNPd",
+        "name": "Secure Firewall - Get Access Token",
+        "title": "Secure Firewall - Get Access Token",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Secure Firewall - Get Access Token",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_01XCKNM65TB0X1A6SrSLcrbxLGwoWzmfFPC",
+            "target_type": "web-service.endpoint"
+          },
+          "workflow_id": "definition_workflow_01PP76OBLMFFT4g43eU1MrFz5S7BxbqRzOk",
+          "workflow_name": "Secure Firewall - Get Access Token"
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01XD0DRVK9XLO4QrUgsrhbhlXEPEDYA046Z",
+        "name": "Secure Firewall - Get Device Details",
+        "title": "Secure Firewall - Get Device Details",
+        "type": "workflow.atomic_workflow",
+        "base_type": "subworkflow",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Secure Firewall - Get Device Details",
+          "input": {
+            "variable_workflow_01VHTCYG0XN0R4wdpXKU0DUXFj5Pz4iG7jy": "$activity.definition_activity_01XCXWR9UWJUU0Oenbihp5bvy1K0JEPuNPd.output.variable_workflow_01PP76OBECP484xngkIgAlf2Yr0SrpVXhYx$",
+            "variable_workflow_01VHTDQ0WWIG20HLF6Qq5LDwtJxTACKd3xz": "$activity.definition_activity_01XCXWR9UWJUU0Oenbihp5bvy1K0JEPuNPd.output.variable_workflow_01PP76OBECVZD3O8cyvubv6Cb2mfX5HASQ2$",
+            "variable_workflow_01VIQETTCYJDH7jw0mLDMS98lnDGfnNa6Hp": ""
+          },
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "target_type": "web-service.endpoint",
+            "use_workflow_target": true
+          },
+          "workflow_id": "definition_workflow_01VHTBAECXLGB1aN5gQHdRsMhIU13AXe5wd",
+          "workflow_name": "Secure Firewall - Get Device Details"
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01XCKNM65TB0X1A6SrSLcrbxLGwoWzmfFPC": {
+      "unique_name": "definition_target_01XCKNM65TB0X1A6SrSLcrbxLGwoWzmfFPC",
+      "name": "FMC",
+      "title": "FMC",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "ao_remote_id": "01X1NJGSDMWT365g2vmAPrtFQMueUVIWMn5",
+        "default_runtime_user_id": "definition_runtime_user_01XCKMQK53ID24wFLfKxe9FAb6JINPsLgpU",
+        "disable_certificate_validation": true,
+        "display_name": "FMC",
+        "host": "198.18.1.13",
+        "ignore_proxy": false,
+        "no_runtime_user": false,
+        "path": "api/",
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01XCKMQK53ID24wFLfKxe9FAb6JINPsLgpU": {
+      "unique_name": "definition_runtime_user_01XCKMQK53ID24wFLfKxe9FAb6JINPsLgpU",
+      "name": "FMC CRED",
+      "title": "FMC CRED",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "Basic",
+        "basic_password": "*****",
+        "basic_username": "admin",
+        "display_name": "FMC CRED"
+      }
+    }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01PP76OBLMFFT4g43eU1MrFz5S7BxbqRzOk",
+    "definition_workflow_01VHTBAECXLGB1aN5gQHdRsMhIU13AXe5wd"
+  ],
+  "remotemetas": {
+    "remote_meta_01X1NJGSDQK697DJ60fBuX91LJuY42NeT9s": {
+      "base_type": "remote_meta",
+      "type": "generic.remote_meta",
+      "name": "SX-REMOTE",
+      "title": "SX-REMOTE",
+      "version": "1.0.0",
+      "properties": {
+        "cloud_type": "vmware",
+        "display_name": "SX-REMOTE",
+        "network": {
+          "dns_servers": "198.18.133.1",
+          "gateway": "198.18.128.1",
+          "ip_endpoint": "198.18.133.4/18",
+          "is_static_ip": true
+        },
+        "proxy": {
+          "require_proxy": false
+        }
+      },
+      "unique_name": "remote_meta_01X1NJGSDQK697DJ60fBuX91LJuY42NeT9s",
+      "object_type": "remote_meta"
+    }
+  },
+  "dependent_workflows": [
+    "definition_workflow_01PP76OBLMFFT4g43eU1MrFz5S7BxbqRzOk",
+    "definition_workflow_01VHTBAECXLGB1aN5gQHdRsMhIU13AXe5wd"
+  ]
+}
